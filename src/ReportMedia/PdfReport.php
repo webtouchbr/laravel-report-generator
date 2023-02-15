@@ -4,6 +4,7 @@ namespace Jimmyjs\ReportGenerator\ReportMedia;
 
 use Config;
 use Jimmyjs\ReportGenerator\ReportGenerator;
+use Carbon\Carbon;
 
 class PdfReport extends ReportGenerator
 {
@@ -34,7 +35,7 @@ class PdfReport extends ReportGenerator
 			$pdf = \App::make('snappy.pdf.wrapper');
 			$pdf->setOption('footer-font-size', 10);
 			$pdf->setOption('footer-left', __('laravel-report-generator::messages.page'));
-			$pdf->setOption('footer-right', __('laravel-report-generator::messages.printed_at', ['date' => date('d M Y H:i:s')]));
+			$pdf->setOption('footer-right', __('laravel-report-generator::messages.printed_at', ['date' => Carbon::now()->format('d M Y H:i:s')]));
 		} else if ($pdfLibrary === 'dompdf') {
 			try {
 				$pdf = \App::make('dompdf.wrapper');
